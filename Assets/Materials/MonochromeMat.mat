@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RedMaterial
-  m_Shader: {fileID: 4800000, guid: cc236fc35b6748d4ba3b3a0960b5b891, type: 3}
+  m_Name: MonochromeMat
+  m_Shader: {fileID: 4800000, guid: b02debb25979404458876ccdc117df2a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
