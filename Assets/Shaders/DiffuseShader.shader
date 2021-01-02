@@ -52,6 +52,7 @@
                 return o;
             }
 
+            // pixelColor = dot(LightDir, Normal) * Color * lightIntensity
             fixed4 frag(v2f i) : SV_Target
             {
                 float3 normalDirection = normalize(i.worldNormal);
