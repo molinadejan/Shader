@@ -1,11 +1,10 @@
-﻿Shader "Custom/SurfaceShaderSecondAlbedo"
+﻿Shader "Custom/SurfaceShaderNormalMap"
 {
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _SecondAlbedo("Second Albedo (RGB)", 2D) = "white" {}
-        _AlbedoLerp ("Albedo Lerp", Range(0,1)) = 0.5
+        _NormalMap("Normal Map", 2D) = "bump" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
     }
@@ -22,8 +21,7 @@
         #pragma target 3.0
 
         sampler2D _MainTex;
-        sampler2D _SecondAlbedo;
-        half _AlbedoLerp;
+        sampler2D _NormalMap;
 
         struct Input
         {
@@ -45,8 +43,8 @@
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            fixed4 secondAlbedo = tex2D(_SecondAlbedo, IN.uv_MainTex);
-            o.Albedo = lerp(c, secondAlbedo, _AlbedoLerp) *_Color;
+            o.Normal = UnpackNormal( tex2D (_NormalMap, IN.uv_MainTex));
+            o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
